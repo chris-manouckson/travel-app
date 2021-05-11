@@ -1,12 +1,12 @@
 import React from 'react';
 
+import { Layout } from 'components/common';
+
 const Cities = () => {
   return (
-    <main>
-      <div>
-        <h1>Cities</h1>
-      </div>
-    </main>
+    <Layout>
+      <h1>Cities</h1>
+    </Layout>
   );
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
+import { Layout } from 'components/common';
+
 const Explorers = () => {
   return (
-    <main>
-      <div>
-        <h1>Explorers</h1>
-      </div>
-    </main>
+    <Layout>
+      <h1>Explorers</h1>
+    </Layout>
   );
 };
 

@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers([
-  // TODO: list all reducers.
-]);
+import dataset from './dataset';
+
+const rootReducer = combineReducers({
+  dataset,
+});
 
 export default rootReducer;

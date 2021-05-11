@@ -1,12 +1,12 @@
 import React from 'react';
 
+import { Layout } from 'components/common';
+
 const Experiences = () => {
   return (
-    <main>
-      <div>
-        <h1>Experiences</h1>
-      </div>
-    </main>
+    <Layout>
+      <h1>Experiences</h1>
+    </Layout>
   );
 };
 
