@@ -3,8 +3,9 @@ import * as actionTypes from '../actionTypes/dataset';
 const initialState = {
   data: {
     counts: {},
+    guides: [],
     cities: [],
-    explorers: [],
+    experiences: [],
   },
   getRequestStatus: { isLoading: false, error: null },
 };

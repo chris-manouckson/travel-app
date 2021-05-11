@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const navigationLinks = [
@@ -7,7 +8,6 @@ const navigationLinks = [
   { title: 'Guides', to: '/guides' },
   { title: 'Cities', to: '/cities' },
   { title: 'Experiences', to: '/experiences' },
-  { title: 'Explorers', to: '/explorers' },
 ];
 
 const GlobalStyle = createGlobalStyle`
@@ -50,19 +50,41 @@ const HeaderNav = styled.nav`
 
 const HeaderNavLinkWrapper = styled.div`
   margin-right: 24px;
+  border-bottom: ${(props) => props.isActive ? '2px solid' : 'none'};
 `;
 
 const HeaderNavLink = styled(RouterLink)`
   padding: 4px 0;
-  border-bottom: ${(props) => props.isActive ? '2px solid' : 'none'};
   text-decoration: none;
   color: inherit;
 `;
 
+const LoadingContainer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+`;
+
 const Layout = (props) => {
-  const { children } = props;
+  const { isLoading, children } = props;
 
   const location = useLocation();
+
+  if (isLoading) {
+    return (
+      <Container>
+        <LoadingContainer>
+          <CircularProgress />
+        </LoadingContainer>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -71,8 +93,11 @@ const Layout = (props) => {
         <Header>
           <HeaderNav>
             {navigationLinks.map(navigationLink => (
-              <HeaderNavLinkWrapper key={`${navigationLink.title}${navigationLink.to}`}>
-                <HeaderNavLink to={navigationLink.to} isActive={navigationLink.to === location.pathname}>
+              <HeaderNavLinkWrapper
+                key={`${navigationLink.title}${navigationLink.to}`}
+                isActive={navigationLink.to === location.pathname}
+              >
+                <HeaderNavLink to={navigationLink.to}>
                   {navigationLink.title}
                 </HeaderNavLink>
               </HeaderNavLinkWrapper>
@@ -86,6 +111,10 @@ const Layout = (props) => {
       </Container>
     </>
   );
+};
+
+Layout.defaultProps = {
+  isLoading: false,
 };
 
 export default Layout;
